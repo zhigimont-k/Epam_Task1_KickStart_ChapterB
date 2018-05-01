@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="task1-part1" verbose="2" parallel="false">
+<suite name="task1-part1" verbose="4" parallel="false">
     <test name="Test">
         <classes>
             <class name="by.epam.task1b.repository.TetrahedronRepositoryTest"/>
@@ -10,6 +10,7 @@
             <class name="by.epam.task1b.specification.TetrahedronByAreaRangeSpecificationTest"/>
             <class name="by.epam.task1b.specification.TetrahedronByNameSpecificationTest"/>
             <class name="by.epam.task1b.specification.TetrahedronByIdSpecificationTest"/>
+            <class name="by.epam.task1b.registrar.ParameterKeeperTest"/>
         </classes>
     </test>
 </suite>

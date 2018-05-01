@@ -11,6 +11,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,8 @@ public class ParameterKeeperTest {
 
     @BeforeClass
     public void init() {
+        TetrahedronRepository.getInstance().clear();
+        expected = new HashMap<>();
         changed = new Tetrahedron(
                 new Point(1, 3, 3), new Point(4, 9, 11),
                 new Point(2, 1, 11), new Point(1, 2, 11));
@@ -32,6 +35,9 @@ public class ParameterKeeperTest {
         list.add(new Tetrahedron(
                 new Point(2, 2, 8), new Point(4, 4, 6),
                 new Point(7, 8, 6), new Point(1, 5, 6)));
+        for (Tetrahedron tetrahedron : list) {
+            TetrahedronRepository.getInstance().add(tetrahedron);
+        }
     }
 
     @DataProvider(name = "dataProviderAdd")
@@ -40,12 +46,11 @@ public class ParameterKeeperTest {
         for (Tetrahedron tetrahedron : list) {
             expected.put(tetrahedron.getId(), new TetrahedronParameter(
                     action.calculateSurfaceArea(tetrahedron), action.calculateVolume(tetrahedron)));
-            TetrahedronRepository.getInstance().add(tetrahedron);
         }
         return new Object[][]{{ParameterKeeper.getInstance().getMap(), expected}};
     }
 
-    @Test(dataProvider = "dataProvider")
+    @Test(dataProvider = "dataProviderAdd")
     public void add(Map<Long, TetrahedronParameter> result, Map<Long, TetrahedronParameter> expected) {
         Assert.assertEquals(result, expected);
     }
@@ -64,7 +69,7 @@ public class ParameterKeeperTest {
 
     @DataProvider(name = "dataProviderRemove")
     public Object[][] provideDataRemove() {
-        expected.remove(changed);
+        expected.remove(changed.getId());
         TetrahedronRepository.getInstance().remove(changed);
         return new Object[][]{{ParameterKeeper.getInstance().getMap(), expected}};
     }

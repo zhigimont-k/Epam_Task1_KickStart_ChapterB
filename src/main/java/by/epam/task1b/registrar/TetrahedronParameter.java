@@ -1,5 +1,7 @@
 package by.epam.task1b.registrar;
 
+import java.util.Objects;
+
 public class TetrahedronParameter {
     private double surfaceArea;
     private double volume;
@@ -30,5 +32,24 @@ public class TetrahedronParameter {
 
     public void setSurfaceArea(double surfaceArea) {
         this.surfaceArea = surfaceArea;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TetrahedronParameter that = (TetrahedronParameter) o;
+        return surfaceArea == that.surfaceArea && volume == that.volume;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        hash += hash * 31 + surfaceArea + volume;
+        return hash;
     }
 }
