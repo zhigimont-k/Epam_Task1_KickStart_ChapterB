@@ -1,7 +1,5 @@
 package by.epam.task1b.registrar;
 
-import java.util.Objects;
-
 public class TetrahedronParameter {
     private double surfaceArea;
     private double volume;

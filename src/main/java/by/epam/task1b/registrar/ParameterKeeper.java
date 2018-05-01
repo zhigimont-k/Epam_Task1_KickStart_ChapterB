@@ -23,19 +23,19 @@ public class ParameterKeeper {
         return instance;
     }
 
-    public void add(long key, double area, double volume) {
-        parameterMap.put(key, new TetrahedronParameter(area, volume));
+    public void add(long id, double area, double volume) {
+        parameterMap.put(id, new TetrahedronParameter(area, volume));
         logger.log(Level.INFO, "Value was added to parameter map. Current map:\n" + parameterMap);
     }
 
-    public void update(long key, double area, double volume){
+    public void update(long id, double area, double volume){
         logger.log(Level.INFO, "Element value was changed in parameter keeper.");
-        parameterMap.replace(key, new TetrahedronParameter(area, volume));
+        parameterMap.replace(id, new TetrahedronParameter(area, volume));
         logger.log(Level.INFO, "Current parameter keeper:\n" + parameterMap);
     }
 
-    public void remove(Object key) {
-        parameterMap.remove(key);
+    public void remove(long id) {
+        parameterMap.remove(id);
         logger.log(Level.INFO, "Value was removed from parameter keeper. Current parameter keeper:\n" + parameterMap);
     }
 
