@@ -1,9 +1,9 @@
 package by.epam.task1b.entity;
 
 
+import by.epam.task1b.observer.FigureObserver;
 import by.epam.task1b.observer.ObservableEntity;
 import by.epam.task1b.observer.TetrahedronEvent;
-import by.epam.task1b.observer.TetrahedronObserver;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,9 +12,9 @@ import java.util.UUID;
 
 public class Tetrahedron implements Figure, ObservableEntity {
     private List<Point> points = new ArrayList<>();
-    private String name;
+    private String name = "";
     private long id;
-    private TetrahedronObserver observer;
+    private FigureObserver observer;
 
     public Tetrahedron() {
         id = UUID.randomUUID().getMostSignificantBits();
@@ -26,7 +26,6 @@ public class Tetrahedron implements Figure, ObservableEntity {
         points.add(point2);
         points.add(point3);
         points.add(point4);
-        name = "";
     }
 
     public Tetrahedron(Point point1, Point point2, Point point3, Point point4, String name){
@@ -62,15 +61,13 @@ public class Tetrahedron implements Figure, ObservableEntity {
     }
 
     @Override
-    public void addObserver(TetrahedronObserver observer) {
+    public void addObserver(FigureObserver observer) {
         this.observer = observer;
-        observer.addObservable(this);
     }
 
     @Override
-    public void removeObserver(TetrahedronObserver observer) {
-        observer.removeObservable(this);
-        observer = null;
+    public void removeObserver(FigureObserver observer) {
+        this.observer = null;
     }
 
     @Override
@@ -95,7 +92,7 @@ public class Tetrahedron implements Figure, ObservableEntity {
                 return false;
             }
         }
-        return name.equals(other.name) && id == other.id;
+        return true;
     }
 
     @Override
@@ -104,7 +101,6 @@ public class Tetrahedron implements Figure, ObservableEntity {
         for (Point point : points) {
             hash += hash * 31 + point.hashCode();
         }
-        hash += hash * 31 + name.hashCode() + id;
         return hash;
     }
 

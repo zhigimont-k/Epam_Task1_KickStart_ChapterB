@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="task1-part1" verbose="2" >
-  <test name="Test" >
-    <classes>
-      <class name="by.epam.task1b.repository.TetrahedronRepositoryTest"/>
-    </classes>
- </test>
+<suite name="task1-part1" verbose="2" parallel="false">
+    <test name="Test">
+        <classes>
+            <class name="by.epam.task1b.repository.TetrahedronRepositoryTest"/>
+            <class name="by.epam.task1b.observer.TetrahedronObserverTest"/>
+            <class name="by.epam.task1b.specification.TetrahedronByVolumeSpecificationTest"/>
+            <class name="by.epam.task1b.specification.TetrahedronByVolumeRangeSpecificationTest"/>
+            <class name="by.epam.task1b.specification.TetrahedronByAreaSpecificationTest"/>
+            <class name="by.epam.task1b.specification.TetrahedronByAreaRangeSpecificationTest"/>
+            <class name="by.epam.task1b.specification.TetrahedronByNameSpecificationTest"/>
+            <class name="by.epam.task1b.specification.TetrahedronByIdSpecificationTest"/>
+        </classes>
+    </test>
 </suite>

@@ -2,7 +2,7 @@ package by.epam.task1b.action;
 
 import by.epam.task1b.entity.Point;
 import by.epam.task1b.entity.Tetrahedron;
-import by.epam.task1b.action.matrix.Matrix;
+import by.epam.task1b.matrix.MatrixDeterminantCalculator;
 
 public class TetrahedronAction {
     private static final int POINTS_NUMBER = 4;
@@ -43,8 +43,7 @@ public class TetrahedronAction {
                 }
             }
         }
-        Matrix matrix = new Matrix(coordinates);
-        return Math.abs(matrix.determinant(matrix) / 6);
+        return Math.abs(new MatrixDeterminantCalculator(coordinates).determinant() / 6);
     }
 
 

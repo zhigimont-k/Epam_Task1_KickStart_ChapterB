@@ -4,13 +4,12 @@ public class Point {
     private double x;
     private double y;
     private double z;
-    private String name;
+    private String name = "";
 
     public Point(double x, double y, double z){
         this.x = x;
         this.y = y;
         this.z = z;
-        name = "";
     }
 
     public Point(double x, double y, double z, String name){
