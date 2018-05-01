@@ -3,6 +3,7 @@
   <test name="Test" >
     <classes>
       <class name="by.epam.task1b.repository.TetrahedronRepositoryTest"/>
+        <class name="by.epam.task1b.observer.TetrahedronObserverTest"/>
     </classes>
  </test>
 </suite>

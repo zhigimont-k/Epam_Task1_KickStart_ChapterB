@@ -1,19 +1,18 @@
 package by.epam.task1b.observer;
 
+import by.epam.task1b.action.TetrahedronAction;
 import by.epam.task1b.entity.Tetrahedron;
-import by.epam.task1b.registrar.ParameterHolder;
+import by.epam.task1b.registrar.ParameterKeeper;
 
-import java.util.ArrayList;
+import java.util.EventObject;
 
-public class TetrahedronObserver {
-    private ArrayList<Tetrahedron> list = new ArrayList<>();
-    public void addObservable(Tetrahedron tetrahedron) {
-        list.add(tetrahedron);
-    }
-    public void removeObservable(Tetrahedron tetrahedron){
-        list.remove(tetrahedron);
-    }
-    public void handleEvent(TetrahedronEvent event){
-        ParameterHolder.getInstance().update(event);
+public class TetrahedronObserver implements FigureObserver {
+    @Override
+    public void handleEvent(EventObject event) {
+        TetrahedronEvent tetrahedronEvent = (TetrahedronEvent) event;
+        Tetrahedron tetrahedron = tetrahedronEvent.getSource();
+        TetrahedronAction action = new TetrahedronAction();
+        ParameterKeeper.getInstance().update(tetrahedron.getId(),
+                action.calculateSurfaceArea(tetrahedron), action.calculateVolume(tetrahedron));
     }
 }
