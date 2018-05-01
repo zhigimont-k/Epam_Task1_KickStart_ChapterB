@@ -1,16 +1,15 @@
 package by.epam.task1b.specification;
 
-import by.epam.task1b.entity.Figure;
 import by.epam.task1b.entity.Tetrahedron;
 import by.epam.task1b.registrar.ParameterKeeper;
 
-public class TetrahedronByAreaRangeSpecification implements TetrahedronSpecification{
+public class SelectTetrahedronByAreaRangeSpecification implements SelectTetrahedronSpecification {
     private double max;
     private double min;
 
-    public TetrahedronByAreaRangeSpecification(){}
+    public SelectTetrahedronByAreaRangeSpecification(){}
 
-    public TetrahedronByAreaRangeSpecification(double min, double max) {
+    public SelectTetrahedronByAreaRangeSpecification(double min, double max) {
         this.max = max;
         this.min = min;
     }
@@ -32,8 +31,7 @@ public class TetrahedronByAreaRangeSpecification implements TetrahedronSpecifica
     }
 
     @Override
-    public boolean specified(Figure figure) {
-        Tetrahedron tetrahedron = (Tetrahedron) figure;
+    public boolean specified(Tetrahedron tetrahedron) {
         return ParameterKeeper.getInstance().getArea(tetrahedron.getId()) > min &&
                 ParameterKeeper.getInstance().getArea(tetrahedron.getId()) < max;
     }

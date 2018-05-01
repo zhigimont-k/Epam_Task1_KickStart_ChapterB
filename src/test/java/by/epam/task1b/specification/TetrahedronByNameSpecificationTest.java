@@ -33,7 +33,7 @@ public class TetrahedronByNameSpecificationTest {
         TetrahedronRepository.getInstance().add(tetrahedron3);
         Set<Tetrahedron> expected = new HashSet<>();
         Set<Tetrahedron> result = TetrahedronRepository.getInstance().query(
-                new TetrahedronByNameSpecification(""));
+                new SelectTetrahedronByNameSpecification(""));
         expected.add(tetrahedron1);
         expected.add(tetrahedron2);
         return new Object[][]{{result, expected}};

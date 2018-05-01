@@ -4,8 +4,7 @@ import by.epam.task1b.action.TetrahedronAction;
 import by.epam.task1b.entity.Point;
 import by.epam.task1b.entity.Tetrahedron;
 import by.epam.task1b.registrar.ParameterKeeper;
-import by.epam.task1b.specification.FigureSpecification;
-import by.epam.task1b.specification.TetrahedronSpecification;
+import by.epam.task1b.specification.*;
 import by.epam.task1b.store.TetrahedronStore;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -68,39 +67,18 @@ public class TetrahedronRepository implements FigureRepository<Tetrahedron> {
         logger.log(Level.INFO, "Current repository:\n" + instance);
     }
 
-    public Set<Tetrahedron> query(FigureSpecification specification) {
-        TetrahedronSpecification tetrahedronSpecification = (TetrahedronSpecification) specification;
+    public Set<Tetrahedron> query(SelectFigureSpecification specification) {
+        SelectTetrahedronSpecification tetrahedronSpecification = (SelectTetrahedronSpecification) specification;
         return TetrahedronStore.getInstance().getStore().stream()
                 .filter(tetrahedronSpecification::specified)
                 .collect(Collectors.toCollection(HashSet::new));
     }
 
-    public List<Tetrahedron> sortByName() {
+    @Override
+    public List<Tetrahedron> query(SortFigureSpecification specification) {
+        SortTetrahedronSpecification tetrahedronSpecification = (SortTetrahedronSpecification) specification;
         return TetrahedronStore.getInstance().getStore().stream()
-                .sorted(Comparator.comparing(Tetrahedron::getName)
-                        .thenComparing(Tetrahedron::getId))
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    public List<Tetrahedron> sortById() {
-        return TetrahedronStore.getInstance().getStore().stream()
-                .sorted(Comparator.comparing(Tetrahedron::getId))
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    public List<Tetrahedron> sortByArea() {
-        TetrahedronAction action = new TetrahedronAction();
-        return TetrahedronStore.getInstance().getStore().stream()
-                .sorted(Comparator.comparing(action::calculateSurfaceArea)
-                        .thenComparing(Tetrahedron::getName))
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    public List<Tetrahedron> sortByVolume() {
-        TetrahedronAction action = new TetrahedronAction();
-        return TetrahedronStore.getInstance().getStore().stream()
-                .sorted(Comparator.comparing(action::calculateVolume)
-                .thenComparing(Tetrahedron::getName))
+                .sorted(tetrahedronSpecification.thenComparing(new SortTetrahedronByIdSpecification()))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 

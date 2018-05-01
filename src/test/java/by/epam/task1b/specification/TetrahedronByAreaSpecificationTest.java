@@ -30,7 +30,7 @@ public class TetrahedronByAreaSpecificationTest {
         TetrahedronRepository.getInstance().add(tetrahedron3);
         Set<Tetrahedron> expected = new HashSet<>();
         Set<Tetrahedron> result = TetrahedronRepository.getInstance().query(
-                new TetrahedronByAreaSpecification(389.61090371430316));
+                new SelectTetrahedronByAreaSpecification(389.61090371430316));
         expected.add(tetrahedron3);
         return new Object[][]{{result, expected}};
     }

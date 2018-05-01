@@ -1,6 +1,5 @@
 package by.epam.task1b.specification;
 
-import by.epam.task1b.action.TetrahedronAction;
 import by.epam.task1b.entity.Point;
 import by.epam.task1b.entity.Tetrahedron;
 import by.epam.task1b.repository.TetrahedronRepository;
@@ -31,7 +30,7 @@ public class TetrahedronByVolumeSpecificationTest {
         TetrahedronRepository.getInstance().add(tetrahedron3);
         Set<Tetrahedron> expected = new HashSet<>();
         Set<Tetrahedron> result = TetrahedronRepository.getInstance().query(
-                new TetrahedronByVolumeSpecification(3.5));
+                new SelectTetrahedronByVolumeSpecification(3.5));
         expected.add(tetrahedron1);
         return new Object[][]{{result, expected}};
     }

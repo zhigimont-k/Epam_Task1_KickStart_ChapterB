@@ -30,7 +30,7 @@ public class TetrahedronByIdSpecificationTest {
         TetrahedronRepository.getInstance().add(tetrahedron3);
         Set<Tetrahedron> expected = new HashSet<>();
         Set<Tetrahedron> result = TetrahedronRepository.getInstance().query(
-                new TetrahedronByIdSpecification(tetrahedron2.getId()));
+                new SelectTetrahedronByIdSpecification(tetrahedron2.getId()));
         expected.add(tetrahedron2);
         return new Object[][]{{result, expected}};
     }

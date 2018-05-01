@@ -4,7 +4,6 @@ import by.epam.task1b.entity.Point;
 import by.epam.task1b.entity.Tetrahedron;
 import by.epam.task1b.repository.TetrahedronRepository;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -30,7 +29,7 @@ public class TetrahedronByVolumeRangeSpecificationTest {
         TetrahedronRepository.getInstance().add(tetrahedron2);
         TetrahedronRepository.getInstance().add(tetrahedron3);
         Set<Tetrahedron> result = TetrahedronRepository.getInstance().query(
-                new TetrahedronByVolumeRangeSpecification(0, 30));
+                new SelectTetrahedronByVolumeRangeSpecification(0, 30));
         Set<Tetrahedron> expected = new HashSet<>();
         expected.add(tetrahedron1);
         expected.add(tetrahedron3);

@@ -1,14 +1,13 @@
 package by.epam.task1b.specification;
 
-import by.epam.task1b.entity.Figure;
 import by.epam.task1b.entity.Tetrahedron;
 import by.epam.task1b.registrar.ParameterKeeper;
 
-public class TetrahedronByAreaSpecification implements TetrahedronSpecification{
+public class SelectTetrahedronByAreaSpecification implements SelectTetrahedronSpecification {
     private double area;
 
-    public TetrahedronByAreaSpecification(){}
-    public TetrahedronByAreaSpecification(double area){
+    public SelectTetrahedronByAreaSpecification(){}
+    public SelectTetrahedronByAreaSpecification(double area){
         this.area = area;
     }
 
@@ -21,8 +20,7 @@ public class TetrahedronByAreaSpecification implements TetrahedronSpecification{
     }
 
     @Override
-    public boolean specified(Figure figure) {
-        Tetrahedron tetrahedron = (Tetrahedron) figure;
+    public boolean specified(Tetrahedron tetrahedron) {
         return ParameterKeeper.getInstance().getArea(tetrahedron.getId()) == area;
     }
 

@@ -1,14 +1,13 @@
 package by.epam.task1b.specification;
 
-import by.epam.task1b.entity.Figure;
 import by.epam.task1b.entity.Tetrahedron;
 
-public class TetrahedronByNameSpecification implements TetrahedronSpecification {
+public class SelectTetrahedronByNameSpecification implements SelectTetrahedronSpecification {
     private String name;
 
-    public TetrahedronByNameSpecification(){}
+    public SelectTetrahedronByNameSpecification(){}
 
-    public TetrahedronByNameSpecification(String name) {
+    public SelectTetrahedronByNameSpecification(String name) {
         this.name = name;
     }
 
@@ -21,8 +20,7 @@ public class TetrahedronByNameSpecification implements TetrahedronSpecification 
     }
 
     @Override
-    public boolean specified(Figure figure) {
-        Tetrahedron tetrahedron = (Tetrahedron) figure;
+    public boolean specified(Tetrahedron tetrahedron) {
         return tetrahedron.getName().equals(name);
     }
 }

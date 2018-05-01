@@ -1,15 +1,14 @@
 package by.epam.task1b.specification;
 
-import by.epam.task1b.entity.Figure;
 import by.epam.task1b.entity.Tetrahedron;
 import by.epam.task1b.registrar.ParameterKeeper;
 
-public class TetrahedronByVolumeSpecification implements TetrahedronSpecification {
+public class SelectTetrahedronByVolumeSpecification implements SelectTetrahedronSpecification {
     private double volume;
 
-    public TetrahedronByVolumeSpecification(){}
+    public SelectTetrahedronByVolumeSpecification(){}
 
-    public TetrahedronByVolumeSpecification(double volume) {
+    public SelectTetrahedronByVolumeSpecification(double volume) {
         this.volume = volume;
     }
 
@@ -22,8 +21,7 @@ public class TetrahedronByVolumeSpecification implements TetrahedronSpecificatio
     }
 
     @Override
-    public boolean specified(Figure figure) {
-        Tetrahedron tetrahedron = (Tetrahedron) figure;
+    public boolean specified(Tetrahedron tetrahedron) {
         return ParameterKeeper.getInstance().getVolume(tetrahedron.getId()) == volume;
     }
 }

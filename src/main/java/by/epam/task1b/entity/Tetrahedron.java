@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
-public class Tetrahedron implements Figure, ObservableEntity {
+public class Tetrahedron extends Figure implements ObservableEntity {
     private List<Point> points = new ArrayList<>();
     private String name = "";
     private long id;
@@ -43,6 +43,10 @@ public class Tetrahedron implements Figure, ObservableEntity {
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setPoint(int index, Point point){
