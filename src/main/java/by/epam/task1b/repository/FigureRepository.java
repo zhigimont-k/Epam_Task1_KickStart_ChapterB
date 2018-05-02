@@ -4,7 +4,6 @@ import by.epam.task1b.entity.Figure;
 import by.epam.task1b.specification.SelectFigureSpecification;
 import by.epam.task1b.specification.SortFigureSpecification;
 
-import java.util.List;
 import java.util.Set;
 
 public interface FigureRepository<T extends Figure> {
