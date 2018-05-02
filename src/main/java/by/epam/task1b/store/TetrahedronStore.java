@@ -41,9 +41,6 @@ public class TetrahedronStore implements Iterable<Tetrahedron> {
         store.remove(figure);
     }
 
-    public void clear(){
-        store.clear();
-    }
 
     @Override
     public Iterator<Tetrahedron> iterator() {

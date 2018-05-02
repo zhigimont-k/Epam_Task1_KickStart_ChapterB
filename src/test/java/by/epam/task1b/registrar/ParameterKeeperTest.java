@@ -16,67 +16,30 @@ import java.util.List;
 import java.util.Map;
 
 public class ParameterKeeperTest {
-    private List<Tetrahedron> list;
-    private Map<Long, TetrahedronParameter> expected;
-    private Tetrahedron changed;
+    private Tetrahedron changedTetrahedron;
+    private Map<Long, TetrahedronParameter> expectedMap;
 
-    @BeforeClass(dependsOnMethods = {"by.epam.task1b.repository.TetrahedronRepositoryTest.add"})
-    public void init() {
-        TetrahedronRepository.getInstance().clear();
-        expected = new HashMap<>();
-        changed = new Tetrahedron(
-                new Point(1, 3, 3), new Point(4, 9, 11),
-                new Point(2, 1, 11), new Point(1, 2, 11));
-        list = new ArrayList<>();
-        list.add(changed);
-        list.add(new Tetrahedron(
-                new Point(1, 2, 3), new Point(4, 5, 6),
-                new Point(6, 8, 6), new Point(1, 4, 6)));
-        list.add(new Tetrahedron(
-                new Point(2, 2, 8), new Point(4, 4, 6),
-                new Point(7, 8, 6), new Point(1, 5, 6)));
-        for (Tetrahedron tetrahedron : list) {
-            TetrahedronRepository.getInstance().add(tetrahedron);
-        }
-    }
-
-    @DataProvider(name = "dataProviderAdd")
-    public Object[][] provideDataAdd() {
+    @Test
+    public void add() {
+        changedTetrahedron = new Tetrahedron(
+                new Point(6, 2, 3), new Point(4, 5, 7),
+                new Point(6, 8, 7), new Point(1, 4, 7), 122);
+        expectedMap = new HashMap<>();
         TetrahedronAction action = new TetrahedronAction();
-        for (Tetrahedron tetrahedron : list) {
-            expected.put(tetrahedron.getId(), new TetrahedronParameter(
-                    action.calculateSurfaceArea(tetrahedron), action.calculateVolume(tetrahedron)));
+        for (Tetrahedron tetrahedron : TetrahedronRepository.getInstance().getStore()){
+            expectedMap.put(tetrahedron.getId(), new TetrahedronParameter(action.calculateSurfaceArea(tetrahedron),
+                    action.calculateVolume(tetrahedron)));
         }
-        Map<Long, TetrahedronParameter> result = new HashMap<>();
-        return new Object[][]{{ParameterKeeper.getInstance().getParameterMap(), expected}};
+        expectedMap.put(changedTetrahedron.getId(), new TetrahedronParameter(action.calculateSurfaceArea(changedTetrahedron),
+                action.calculateVolume(changedTetrahedron)));
+        TetrahedronRepository.getInstance().add(changedTetrahedron);
+        Assert.assertEquals(ParameterKeeper.getInstance().getParameterMap(), expectedMap);
     }
 
-    @Test(dataProvider = "dataProviderAdd", dependsOnMethods = {"by.epam.task1b.repository.TetrahedronRepositoryTest.add"})
-    public void add(Map<Long, TetrahedronParameter> result, Map<Long, TetrahedronParameter> expected) {
-        Assert.assertEquals(result, expected);
-    }
-
-    @DataProvider(name = "dataProviderUpdate")
-    public Object[][] provideDataUpdate() {
-        changed.addObserver(new TetrahedronObserver());
-        changed.setPoint(1, new Point(1, 2, 11));
-        return new Object[][]{{ParameterKeeper.getInstance().getParameterMap(), expected}};
-    }
-
-    @Test(dataProvider = "dataProviderUpdate", dependsOnMethods = {"add"})
-    public void update(Map<Long, TetrahedronParameter> result, Map<Long, TetrahedronParameter> expected) {
-        Assert.assertEquals(result, expected);
-    }
-
-    @DataProvider(name = "dataProviderRemove")
-    public Object[][] provideDataRemove() {
-        expected.remove(changed.getId());
-        TetrahedronRepository.getInstance().remove(changed);
-        return new Object[][]{{ParameterKeeper.getInstance().getParameterMap(), expected}};
-    }
-
-    @Test(dataProvider = "dataProviderRemove", dependsOnMethods = {"add"})
-    public void remove(Map<Long, TetrahedronParameter> result, Map<Long, TetrahedronParameter> expected) {
-        Assert.assertEquals(result, expected);
+    @Test
+    public void remove(){
+        expectedMap.remove(changedTetrahedron.getId());
+        TetrahedronRepository.getInstance().remove(changedTetrahedron);
+        Assert.assertEquals(ParameterKeeper.getInstance().getParameterMap(), expectedMap);
     }
 }

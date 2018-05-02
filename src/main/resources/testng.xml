@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="task1-part1" verbose="4" parallel="false">
-    <test name="Test">
+    <test name="Repository test">
         <classes>
             <class name="by.epam.task1b.repository.TetrahedronRepositoryTest"/>
-            <class name="by.epam.task1b.observer.TetrahedronObserverTest"/>
             <class name="by.epam.task1b.specification.SelectTetrahedronByVolumeSpecificationTest"/>
             <class name="by.epam.task1b.specification.SelectTetrahedronByVolumeRangeSpecificationTest"/>
             <class name="by.epam.task1b.specification.SelectTetrahedronByAreaSpecificationTest"/>
             <class name="by.epam.task1b.specification.SelectTetrahedronByAreaRangeSpecificationTest"/>
             <class name="by.epam.task1b.specification.SelectTetrahedronByNameSpecificationTest"/>
             <class name="by.epam.task1b.specification.SelectTetrahedronByIdSpecificationTest"/>
+            <class name="by.epam.task1b.specification.SortTetrahedronByVolumeSpecificationTest"/>
+            <class name="by.epam.task1b.specification.SortTetrahedronByAreaSpecificationTest"/>
+            <class name="by.epam.task1b.specification.SortTetrahedronByNameSpecificationTest"/>
+            <class name="by.epam.task1b.specification.SortTetrahedronByIdSpecificationTest"/>
+            <class name="by.epam.task1b.registrar.ParameterKeeperTest"/>
+            <class name="by.epam.task1b.observer.TetrahedronObserverTest"/>
         </classes>
     </test>
 </suite>

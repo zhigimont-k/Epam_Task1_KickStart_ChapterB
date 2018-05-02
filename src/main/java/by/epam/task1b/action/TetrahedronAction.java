@@ -43,7 +43,7 @@ public class TetrahedronAction {
                 }
             }
         }
-        return Math.abs(new MatrixDeterminantCalculator(coordinates).determinant() / 6);
+        return Math.abs(new MatrixDeterminantCalculator(coordinates).calculateDeterminant() / 6);
     }
 
 

@@ -17,8 +17,7 @@ public class SelectTetrahedronByIdSpecificationTest {
         Set<Tetrahedron> expected = new HashSet<>();
         Tetrahedron tetrahedron = new Tetrahedron(
                 new Point(2, 2, 8), new Point(4, 4, 6),
-                new Point(7, 8, 6), new Point(1, 5, 6));
-        tetrahedron.setId(42);
+                new Point(7, 8, 6), new Point(1, 5, 6), 42);
         Set<Tetrahedron> result = TetrahedronRepository.getInstance().query(
                 new SelectTetrahedronByIdSpecification(tetrahedron.getId()));
         expected.add(tetrahedron);

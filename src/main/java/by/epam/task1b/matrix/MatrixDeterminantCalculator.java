@@ -29,7 +29,7 @@ public class MatrixDeterminantCalculator {
         return result;
     }
 
-    private double determinant(MatrixDeterminantCalculator matrix) {
+    private double calculateDeterminant(MatrixDeterminantCalculator matrix) {
         if (matrix.data[0].length == 1) {
             return matrix.data[0][0];
         } else if (matrix.data[0].length == 2) {
@@ -42,14 +42,14 @@ public class MatrixDeterminantCalculator {
                 MatrixDeterminantCalculator sub = subMatrix(matrix, 1, col + 1);
 
                 result += (Math.pow(-1, 1 + col + 1) *
-                        matrix.data[0][col] * determinant(sub));
+                        matrix.data[0][col] * calculateDeterminant(sub));
             }
 
             return result;
         }
     }
 
-    public double determinant() {
+    public double calculateDeterminant() {
         if (data[0].length == 1) {
             return data[0][0];
         } else if (data[0].length == 2) {
@@ -62,7 +62,7 @@ public class MatrixDeterminantCalculator {
                 MatrixDeterminantCalculator sub = subMatrix(this, 1, col + 1);
 
                 result += (Math.pow(-1, 1 + col + 1) *
-                        data[0][col] * determinant(sub));
+                        data[0][col] * calculateDeterminant(sub));
             }
 
             return result;

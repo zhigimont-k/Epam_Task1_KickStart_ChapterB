@@ -6,11 +6,10 @@ import by.epam.task1b.observer.ObservableEntity;
 import by.epam.task1b.observer.TetrahedronEvent;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
-public class Tetrahedron extends Figure implements ObservableEntity {
+public class Tetrahedron implements Figure, ObservableEntity {
     private List<Point> points = new ArrayList<>();
     private String name = "";
     private long id;
@@ -28,6 +27,11 @@ public class Tetrahedron extends Figure implements ObservableEntity {
         points.add(point4);
     }
 
+    public Tetrahedron(Point point1, Point point2, Point point3, Point point4, long id){
+        this(point1, point2, point3, point4);
+        this.id = id;
+    }
+
     public Tetrahedron(Point point1, Point point2, Point point3, Point point4, String name){
         this(point1, point2, point3, point4);
         this.name = name;
@@ -43,10 +47,6 @@ public class Tetrahedron extends Figure implements ObservableEntity {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setPoint(int index, Point point){

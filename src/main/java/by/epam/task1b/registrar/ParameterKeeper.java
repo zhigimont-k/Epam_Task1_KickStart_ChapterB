@@ -39,18 +39,10 @@ public class ParameterKeeper {
         logger.log(Level.INFO, "Value was removed from parameter keeper. Current parameter keeper:\n" + parameterMap);
     }
 
-    public TetrahedronParameter getParameter(long id){
-        return parameterMap.get(id);
-    }
-
     public Map<Long, TetrahedronParameter> getParameterMap() {
         return Collections.unmodifiableMap(parameterMap);
     }
 
-    public void clear(){
-        parameterMap.clear();
-        logger.log(Level.INFO, "All values were removed from parameter map. Current parameter keeper:\n" + parameterMap);
-    }
 
     public double getArea(long id){
         return parameterMap.get(id).getSurfaceArea();

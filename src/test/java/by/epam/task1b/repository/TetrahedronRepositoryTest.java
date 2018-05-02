@@ -19,14 +19,15 @@ public class TetrahedronRepositoryTest {
                 new Point(6, 8, 9), new Point(1, 4, 9));
         Tetrahedron tetrahedron1 = new Tetrahedron(
                 new Point(0, 2, 3), new Point(4, 5, 6),
-                new Point(6, 8, 6), new Point(1, 4, 6));
+                new Point(6, 8, 6), new Point(1, 4, 6), 12);
         Tetrahedron tetrahedron2 = new Tetrahedron(
                 new Point(2, 2, 8), new Point(4, 4, 6),
-                new Point(7, 8, 6), new Point(1, 5, 6));
-        tetrahedron2.setId(42);
+                new Point(7, 8, 6), new Point(1, 5, 6), 42);
         Tetrahedron tetrahedron3 = new Tetrahedron(
                 new Point(1, 3, 5), new Point(4, 4, 6),
-                new Point(7, 8, 6), new Point(1, 5, 6));
+                new Point(7, 8, 6), new Point(1, 5, 6), 35);
+        tetrahedron1.setName("Tetrahedron A");
+        tetrahedron2.setName("Tetrahedron B");
         tetrahedron3.setName("Tetrahedron C");
         expectedSet = new HashSet<>();
         expectedSet.add(tetrahedron1);

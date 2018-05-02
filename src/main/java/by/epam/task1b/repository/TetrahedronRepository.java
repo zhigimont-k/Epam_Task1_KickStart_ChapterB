@@ -1,7 +1,6 @@
 package by.epam.task1b.repository;
 
 import by.epam.task1b.action.TetrahedronAction;
-import by.epam.task1b.entity.Point;
 import by.epam.task1b.entity.Tetrahedron;
 import by.epam.task1b.registrar.ParameterKeeper;
 import by.epam.task1b.specification.*;
@@ -39,12 +38,6 @@ public class TetrahedronRepository implements FigureRepository<Tetrahedron>, Ite
         TetrahedronStore.getInstance().remove(tetrahedron);
         logger.log(Level.INFO, "Element was removed. Current repository:\n" + instance);
         ParameterKeeper.getInstance().remove(tetrahedron.getId());
-    }
-
-    public void clear() {
-        TetrahedronStore.getInstance().clear();
-        logger.log(Level.INFO, "All elements were removed. Current repository:\n" + instance);
-        ParameterKeeper.getInstance().clear();
     }
 
     public Tetrahedron getTetrahedron(long id) {
