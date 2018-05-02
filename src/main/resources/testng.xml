@@ -4,13 +4,12 @@
         <classes>
             <class name="by.epam.task1b.repository.TetrahedronRepositoryTest"/>
             <class name="by.epam.task1b.observer.TetrahedronObserverTest"/>
-            <class name="by.epam.task1b.specification.TetrahedronByVolumeSpecificationTest"/>
-            <class name="by.epam.task1b.specification.TetrahedronByVolumeRangeSpecificationTest"/>
-            <class name="by.epam.task1b.specification.TetrahedronByAreaSpecificationTest"/>
-            <class name="by.epam.task1b.specification.TetrahedronByAreaRangeSpecificationTest"/>
-            <class name="by.epam.task1b.specification.TetrahedronByNameSpecificationTest"/>
-            <class name="by.epam.task1b.specification.TetrahedronByIdSpecificationTest"/>
-            <class name="by.epam.task1b.registrar.ParameterKeeperTest"/>
+            <class name="by.epam.task1b.specification.SelectTetrahedronByVolumeSpecificationTest"/>
+            <class name="by.epam.task1b.specification.SelectTetrahedronByVolumeRangeSpecificationTest"/>
+            <class name="by.epam.task1b.specification.SelectTetrahedronByAreaSpecificationTest"/>
+            <class name="by.epam.task1b.specification.SelectTetrahedronByAreaRangeSpecificationTest"/>
+            <class name="by.epam.task1b.specification.SelectTetrahedronByNameSpecificationTest"/>
+            <class name="by.epam.task1b.specification.SelectTetrahedronByIdSpecificationTest"/>
         </classes>
     </test>
 </suite>

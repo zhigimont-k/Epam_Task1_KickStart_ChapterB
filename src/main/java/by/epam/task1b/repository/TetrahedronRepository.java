@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class TetrahedronRepository implements FigureRepository<Tetrahedron> {
+public class TetrahedronRepository implements FigureRepository<Tetrahedron>, Iterable<Tetrahedron> {
     private static Logger logger = LogManager.getLogger();
     private static TetrahedronRepository instance;
 
@@ -41,32 +41,21 @@ public class TetrahedronRepository implements FigureRepository<Tetrahedron> {
         ParameterKeeper.getInstance().remove(tetrahedron.getId());
     }
 
-    public void clear(){
+    public void clear() {
         TetrahedronStore.getInstance().clear();
         logger.log(Level.INFO, "All elements were removed. Current repository:\n" + instance);
         ParameterKeeper.getInstance().clear();
     }
 
-    public void setName(long id, String name) {
-        logger.log(Level.INFO, "Element name was changed in repository.");
-        for (Tetrahedron tetrahedron : TetrahedronStore.getInstance()) {
-            if (tetrahedron.getId() == id) {
-                tetrahedron.setName(name);
-            }
-        }
-        logger.log(Level.INFO, "Current repository:\n" + instance);
+    public Tetrahedron getTetrahedron(long id) {
+        return TetrahedronStore.getInstance().get(id);
     }
 
-    public void setPoint(long id, int index, Point point) {
-        logger.log(Level.INFO, "Element value was changed in repository.");
-        for (Tetrahedron tetrahedron : TetrahedronStore.getInstance()) {
-            if (tetrahedron.getId() == id) {
-                tetrahedron.setPoint(index, point);
-            }
-        }
-        logger.log(Level.INFO, "Current repository:\n" + instance);
+    public Set<Tetrahedron> getStore() {
+        return TetrahedronStore.getInstance().getStore();
     }
 
+    @Override
     public Set<Tetrahedron> query(SelectFigureSpecification specification) {
         SelectTetrahedronSpecification tetrahedronSpecification = (SelectTetrahedronSpecification) specification;
         return TetrahedronStore.getInstance().getStore().stream()
@@ -80,6 +69,11 @@ public class TetrahedronRepository implements FigureRepository<Tetrahedron> {
         return TetrahedronStore.getInstance().getStore().stream()
                 .sorted(tetrahedronSpecification.thenComparing(new SortTetrahedronByIdSpecification()))
                 .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    @Override
+    public Iterator<Tetrahedron> iterator() {
+        return TetrahedronStore.getInstance().iterator();
     }
 
     @Override

@@ -22,7 +22,7 @@ public class TetrahedronObserverTest {
                 new Point(1, 2, 3), new Point(4, 5, 6),
                 new Point(6, 8, 6), new Point(1, 4, 6));
         TetrahedronRepository.getInstance().add(tetrahedron);
-        for (Tetrahedron tetrahedron : TetrahedronStore.getInstance()){
+        for (Tetrahedron tetrahedron : TetrahedronRepository.getInstance()){
             tetrahedron.addObserver(observer);
         }
     }
@@ -34,7 +34,7 @@ public class TetrahedronObserverTest {
         double areaParameter1 = ParameterKeeper.getInstance().getArea(tetrahedron.getId());
         double volume1 = action.calculateVolume(tetrahedron);
         double volumeParameter1 = ParameterKeeper.getInstance().getVolume(tetrahedron.getId());
-        TetrahedronRepository.getInstance().setPoint(tetrahedron.getId(), 0, new Point(0, 0, 15));
+        tetrahedron.setPoint(0, new Point(0, 0, 15));
         double area2 = action.calculateSurfaceArea(tetrahedron);
         double areaParameter2 = ParameterKeeper.getInstance().getArea(tetrahedron.getId());
         double volume2 = action.calculateVolume(tetrahedron);

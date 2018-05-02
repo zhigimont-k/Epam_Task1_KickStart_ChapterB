@@ -20,7 +20,7 @@ public class ParameterKeeperTest {
     private Map<Long, TetrahedronParameter> expected;
     private Tetrahedron changed;
 
-    @BeforeClass
+    @BeforeClass(dependsOnMethods = {"by.epam.task1b.repository.TetrahedronRepositoryTest.add"})
     public void init() {
         TetrahedronRepository.getInstance().clear();
         expected = new HashMap<>();
@@ -47,10 +47,11 @@ public class ParameterKeeperTest {
             expected.put(tetrahedron.getId(), new TetrahedronParameter(
                     action.calculateSurfaceArea(tetrahedron), action.calculateVolume(tetrahedron)));
         }
-        return new Object[][]{{ParameterKeeper.getInstance().getMap(), expected}};
+        Map<Long, TetrahedronParameter> result = new HashMap<>();
+        return new Object[][]{{ParameterKeeper.getInstance().getParameterMap(), expected}};
     }
 
-    @Test(dataProvider = "dataProviderAdd")
+    @Test(dataProvider = "dataProviderAdd", dependsOnMethods = {"by.epam.task1b.repository.TetrahedronRepositoryTest.add"})
     public void add(Map<Long, TetrahedronParameter> result, Map<Long, TetrahedronParameter> expected) {
         Assert.assertEquals(result, expected);
     }
@@ -58,11 +59,11 @@ public class ParameterKeeperTest {
     @DataProvider(name = "dataProviderUpdate")
     public Object[][] provideDataUpdate() {
         changed.addObserver(new TetrahedronObserver());
-        TetrahedronRepository.getInstance().setPoint(changed.getId(), 1, new Point(1, 2, 11));
-        return new Object[][]{{ParameterKeeper.getInstance().getMap(), expected}};
+        changed.setPoint(1, new Point(1, 2, 11));
+        return new Object[][]{{ParameterKeeper.getInstance().getParameterMap(), expected}};
     }
 
-    @Test(dataProvider = "dataProviderUpdate")
+    @Test(dataProvider = "dataProviderUpdate", dependsOnMethods = {"add"})
     public void update(Map<Long, TetrahedronParameter> result, Map<Long, TetrahedronParameter> expected) {
         Assert.assertEquals(result, expected);
     }
@@ -71,10 +72,10 @@ public class ParameterKeeperTest {
     public Object[][] provideDataRemove() {
         expected.remove(changed.getId());
         TetrahedronRepository.getInstance().remove(changed);
-        return new Object[][]{{ParameterKeeper.getInstance().getMap(), expected}};
+        return new Object[][]{{ParameterKeeper.getInstance().getParameterMap(), expected}};
     }
 
-    @Test(dataProvider = "dataProviderRemove")
+    @Test(dataProvider = "dataProviderRemove", dependsOnMethods = {"add"})
     public void remove(Map<Long, TetrahedronParameter> result, Map<Long, TetrahedronParameter> expected) {
         Assert.assertEquals(result, expected);
     }

@@ -58,12 +58,6 @@ public class Tetrahedron extends Figure implements ObservableEntity {
         return points.get(index);
     }
 
-    public void setPoints(Collection<? extends Point> c){
-        points = new ArrayList<>();
-        points.addAll(c);
-        notifyObservers();
-    }
-
     @Override
     public void addObserver(FigureObserver observer) {
         this.observer = observer;

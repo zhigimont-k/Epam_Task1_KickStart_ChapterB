@@ -20,10 +20,6 @@ public class TetrahedronStore implements Iterable<Tetrahedron> {
         return instance;
     }
 
-    public Set<Tetrahedron> getStore() {
-        return store;
-    }
-
     public Tetrahedron get(long id){
         for (Tetrahedron tetrahedron : store){
             if (id == tetrahedron.getId()){
@@ -31,6 +27,10 @@ public class TetrahedronStore implements Iterable<Tetrahedron> {
             }
         }
         return null;
+    }
+
+    public Set<Tetrahedron> getStore() {
+        return Collections.unmodifiableSet(store);
     }
 
     public void add(Figure figure) {

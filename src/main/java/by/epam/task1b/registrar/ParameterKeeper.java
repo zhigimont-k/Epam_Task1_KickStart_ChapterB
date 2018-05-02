@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,21 +24,27 @@ public class ParameterKeeper {
         return instance;
     }
 
-
     public void add(long id, double area, double volume) {
         parameterMap.put(id, new TetrahedronParameter(area, volume));
         logger.log(Level.INFO, "Value was added to parameter map. Current map:\n" + parameterMap);
     }
 
     public void update(long id, double area, double volume){
-        logger.log(Level.INFO, "Element value was changed in parameter keeper.");
         parameterMap.replace(id, new TetrahedronParameter(area, volume));
-        logger.log(Level.INFO, "Current parameter keeper:\n" + parameterMap);
+        logger.log(Level.INFO, "Element value was changed in parameter keeper. Current parameter keeper:\n" + parameterMap);
     }
 
     public void remove(long id) {
         parameterMap.remove(id);
         logger.log(Level.INFO, "Value was removed from parameter keeper. Current parameter keeper:\n" + parameterMap);
+    }
+
+    public TetrahedronParameter getParameter(long id){
+        return parameterMap.get(id);
+    }
+
+    public Map<Long, TetrahedronParameter> getParameterMap() {
+        return Collections.unmodifiableMap(parameterMap);
     }
 
     public void clear(){
@@ -51,10 +58,6 @@ public class ParameterKeeper {
 
     public double getVolume(long id){
         return parameterMap.get(id).getVolume();
-    }
-
-    public Map<Long, TetrahedronParameter> getMap() {
-        return parameterMap;
     }
 
     @Override
