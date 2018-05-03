@@ -14,19 +14,19 @@ public class SortTetrahedronByIdSpecificationTest {
     public void query() {
         Tetrahedron tetrahedron1 = new Tetrahedron(
                 new Point(0, 2, 3), new Point(4, 5, 6),
-                new Point(6, 8, 6), new Point(1, 4, 6));
+                new Point(6, 8, 6), new Point(1, 4, 6), 12);
         Tetrahedron tetrahedron2 = new Tetrahedron(
                 new Point(2, 2, 8), new Point(4, 4, 6),
-                new Point(7, 8, 6), new Point(1, 5, 6));
+                new Point(7, 8, 6), new Point(1, 5, 6), 42);
         Tetrahedron tetrahedron3 = new Tetrahedron(
                 new Point(1, 3, 5), new Point(4, 4, 6),
-                new Point(7, 8, 6), new Point(1, 5, 6));
+                new Point(7, 8, 6), new Point(1, 5, 6), 35);
         List<Tetrahedron> expected = new ArrayList<>();
         List<Tetrahedron> result = TetrahedronRepository.getInstance().query(
                 new SortTetrahedronByIdSpecification());
-        expected.add(tetrahedron2);
-        expected.add(tetrahedron3);
         expected.add(tetrahedron1);
+        expected.add(tetrahedron3);
+        expected.add(tetrahedron2);
         Assert.assertEquals(result, expected);
     }
 }

@@ -24,8 +24,8 @@ public class SortTetrahedronByAreaSpecificationTest {
         List<Tetrahedron> expected = new ArrayList<>();
         List<Tetrahedron> result = TetrahedronRepository.getInstance().query(
                 new SortTetrahedronByAreaSpecification());
-        expected.add(tetrahedron1);
         expected.add(tetrahedron3);
+        expected.add(tetrahedron1);
         expected.add(tetrahedron2);
         Assert.assertEquals(result, expected);
     }

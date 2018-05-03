@@ -11,12 +11,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class TetrahedronObserverTest {
-    private TetrahedronObserver observer;
     private Tetrahedron changedTetrahedron;
 
     @BeforeClass
     public void init() {
-        observer = new TetrahedronObserver();
+        TetrahedronObserver observer = new TetrahedronObserver();
         changedTetrahedron = new Tetrahedron(
                 new Point(1, 2, 3), new Point(4, 5, 6),
                 new Point(6, 8, 6), new Point(1, 4, 6));

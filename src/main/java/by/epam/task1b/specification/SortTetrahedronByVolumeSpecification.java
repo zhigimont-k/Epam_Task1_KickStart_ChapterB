@@ -7,6 +7,6 @@ public class SortTetrahedronByVolumeSpecification implements SortTetrahedronSpec
     @Override
     public int compare(Tetrahedron o1, Tetrahedron o2) {
         TetrahedronAction action = new TetrahedronAction();
-        return (int) (action.calculateVolume(o2) - action.calculateVolume(o1));
+        return Double.compare(action.calculateVolume(o1), action.calculateVolume(o2));
     }
 }

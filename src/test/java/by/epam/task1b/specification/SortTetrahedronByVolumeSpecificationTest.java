@@ -24,9 +24,9 @@ public class SortTetrahedronByVolumeSpecificationTest {
         List<Tetrahedron> expected = new ArrayList<>();
         List<Tetrahedron> result = TetrahedronRepository.getInstance().query(
                 new SortTetrahedronByVolumeSpecification());
-        expected.add(tetrahedron2);
-        expected.add(tetrahedron1);
         expected.add(tetrahedron3);
+        expected.add(tetrahedron1);
+        expected.add(tetrahedron2);
         Assert.assertEquals(result, expected);
     }
 }

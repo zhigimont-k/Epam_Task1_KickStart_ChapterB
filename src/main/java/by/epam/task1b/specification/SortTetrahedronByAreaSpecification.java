@@ -7,6 +7,6 @@ public class SortTetrahedronByAreaSpecification implements SortTetrahedronSpecif
     @Override
     public int compare(Tetrahedron o1, Tetrahedron o2) {
         TetrahedronAction action = new TetrahedronAction();
-        return (int) (action.calculateSurfaceArea(o2) - action.calculateVolume(o1));
+        return Double.compare(action.calculateSurfaceArea(o1), action.calculateSurfaceArea(o2));
     }
 }
